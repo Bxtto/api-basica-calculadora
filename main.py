@@ -1,7 +1,18 @@
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="API REST Calculadora")
+
+# Configuración de CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_origins=["*"],  # Permitir todos los encabezados
+    allow_methods=["*"],  # Permitir todos los métodos (GET, POST, etc.)
+    allow_headers=["*"],  # Permitir todos los encabezados
+)
+
 
 # Modelo de datos para operaciones POST
 class Operacion(BaseModel):
