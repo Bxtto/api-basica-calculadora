@@ -63,3 +63,12 @@ def dividir(datos: Operacion):
 def raiz(datos: Operacion):
     """Raíz n-ésima de a {"a":27, "b":3} {"resultado":3} Error si raíz par de número negativo"""
     return {"resultado": math.pow(datos.a, 1/datos.b)}
+
+@app.post("/residuo", status_code=status.HTTP_201_CREATED)
+def residuo(datos: Operacion):
+    """Calcula el residuo de a % b."""
+    try:
+        resultado = datos.a % datos.b
+        return {"resultado": resultado}
+    except ZeroDivisionError:
+        return {"error": "No se puede dividir entre cero"}
